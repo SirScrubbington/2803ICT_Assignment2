@@ -1,15 +1,15 @@
-int trial_division(unsigned long n, unsigned long * result){
+
+void trial_division(unsigned long n, char * shmpt, int threadno){
 	unsigned long p;
-	int i;
 	for(p=1;p<n;p++){
 		if (n%p==0){
-			if(i < 1024){
-				result[i]=p;
-				i++;
-			}
+			strcpy(shmpt,"Thread ");
+			strcat(shmpt,(char*)itoa(threadno));
+			strcat(shmpt," Factor: ");
+			strcat(shmpt,(char*)ultoa(p));
+			printf("%s\n",shmpt);
 		}
 	}
-	return i;
 }
 
 unsigned int _rotl(unsigned long value, int shift) {

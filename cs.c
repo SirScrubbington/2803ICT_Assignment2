@@ -37,7 +37,7 @@ int main(int argc, char * argv[]){
 	
 	// Server Response Slots
 	int shmarr[MAX_REQUESTS];
-	int32_t * slot[MAX_REQUESTS];
+	char * slot[MAX_REQUESTS];
 	
 	int i;
 	
@@ -109,7 +109,7 @@ int main(int argc, char * argv[]){
 		}
 		
 		for(i=0;i<threadc;i++){
-			init_args(&argslist[i],i);
+			init_args(&argslist[i],i,slot[i]);
 			id_list[i]=pthread_create(&threads[i],NULL,thread_wait,&argslist[i]);
 		}
 		
