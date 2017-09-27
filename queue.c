@@ -21,10 +21,12 @@ struct Queue {
 
 struct Queue_UL {
 	int size;
-	unsigned long items[1024];
+	uint32_t items[1024];
 	int itemc;
 };
 
+// initialise_queue_UL(int, struct queue_UL*): int
+// initialises an uint32_t queue object.
 int initialise_queue_UL(int s,struct Queue_UL * q){
 	q->size=s;
 	q->itemc=0;
@@ -32,8 +34,11 @@ int initialise_queue_UL(int s,struct Queue_UL * q){
 	for(i=0;i<q->size;i++){
 		q->items[i]=0;
 	}
+	return 0;
 }
 
+// print_queue_UL(struct queue_UL*): void
+// Prints the contents of a given queue object.
 void print_queue_UL(struct Queue_UL * q){
 	int i;
 	for(i=0;i<q->itemc;i++){
@@ -42,7 +47,9 @@ void print_queue_UL(struct Queue_UL * q){
 	printf("\n");	
 }
 
-int push_UL(unsigned long n,struct Queue_UL * q){
+// push_UL(uint,struct queue_UL*): int
+// Inserts a value to a given Queue_UL.
+int push_UL(uint32_t n,struct Queue_UL * q){
 	if(q->itemc < q->size){
 		q->items[q->itemc++]=n;
 		return 0;
@@ -50,9 +57,11 @@ int push_UL(unsigned long n,struct Queue_UL * q){
 	return 1;
 }
 
-unsigned int pop_UL(struct Queue_UL * q){
+// pop_UL(struct queue_UL*): uint32_t
+// Gets the next value and removes it from a given Queue_UL.
+uint32_t pop_UL(struct Queue_UL * q){
 	if(q->itemc > 0){
-		unsigned int ret = q->items[0];
+		uint32_t ret = q->items[0];
 		int i;
 		for(i=1;i<q->itemc;i++){
 			q->items[i-1]=q->items[i];
@@ -63,6 +72,8 @@ unsigned int pop_UL(struct Queue_UL * q){
 	return 1;
 }
 
+// test_queue_UL(void): void
+// Tests the operation of a given queue_UL.
 int test_queue_UL(){
 	int i;
 	struct Queue_UL q;
@@ -79,6 +90,8 @@ int test_queue_UL(){
 	}
 }
 
+// initialise_queue(int, struct Queue*): int
+// Initialises a given queue with size s.
 int initialise_queue(int s,struct Queue * q){
 	q->size=s;
 	q->itemc=0;
@@ -88,6 +101,8 @@ int initialise_queue(int s,struct Queue * q){
 	}
 }
 
+// print_queue(struct Queue*): void
+// Prints a given queue.
 void print_queue(struct Queue * q){
 	int i;
 	for(i=0;i<q->itemc;i++){
@@ -96,6 +111,8 @@ void print_queue(struct Queue * q){
 	printf("\n");	
 }
 
+// push(int,struct Queue*): int
+// Inserts an integer to a given Queue.
 int push(int n,struct Queue * q){
 	if(q->itemc < q->size){
 		q->items[q->itemc++]=n;
@@ -104,6 +121,8 @@ int push(int n,struct Queue * q){
 	return 1;
 }
 
+// pop(struct Queue*): int
+// Returns the front item from the queue and removes it.
 int pop(struct Queue * q){
 	if(q->itemc > 0){
 		int ret = q->items[0];
@@ -117,6 +136,8 @@ int pop(struct Queue * q){
 	return 1;
 }
 
+// test_queue(void): void
+// Basic test function for the queue struct and related functions.
 int test_queue(){
 	int i;
 	struct Queue q;
